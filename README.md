@@ -168,11 +168,11 @@ C:\Program Files\Microsoft Visual Studio\18\Community> cl.exe bypass.c
 
 ## References
 
-- Pico-Ducky GitHub Repository
-- Sliver C2 Framework
-- Nim
-- MinGW-w64
-- Microsoft Visual Studio
+- Pico-Ducky GitHub Repository: https://github.com/dbisu/pico-ducky
+- Sliver C2 Framework: https://sliver.sh/
+- Nim: https://nim-lang.org/
+- MinGW-w64: https://www.mingw-w64.org/
+- Microsoft Visual Studio: https://visualstudio.microsoft.com/
 
 ## 🧹 Cleanup
 
