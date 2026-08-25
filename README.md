@@ -1,6 +1,9 @@
 # PlugPwn
 This project implements a hardware-based attack vector using a Raspberry Pi Pico configured as a USB Rubber Ducky, combined with the Sliver Command & Control (C2) framework. The implementation provides initial access, UAC bypass, and persistence mechanisms on Windows systems.
 
+## 🎥 Project Demonstration
+<video src="https://github.com/user-attachments/assets/7cbad957-2417-4a98-98bd-3e7f2a256e99" controls width="800"></video>
+
 ## Architecture Diagram
                      Physical Access
                            │
