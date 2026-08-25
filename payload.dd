@@ -1,0 +1,5 @@
+DELAY 1500
+GUI r
+DELAY 400
+STRING powershell -WindowStyle Hidden -ExecutionPolicy Bypass -Command "$drive=(Get-Volume -FileSystemLabel 'CIRCUITPY').DriveLetter; & \"$($drive):\launcher.vbs\""
+ENTER
