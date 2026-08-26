@@ -5,28 +5,29 @@ This project implements a hardware-based attack vector using a Raspberry Pi Pico
 <video src="https://github.com/user-attachments/assets/0ca78224-0c1f-4e34-a916-025a2fd1942d" controls width="800"></video>
 
 ## Architecture Diagram
-                     Physical Access
-                           │
-                           ▼
-                    Raspberry Pi Pico
-                           │
-                           ▼
-                     payload.dd
-                           │
-                           ▼
-                     launcher.vbs
-                    ┌──────┴──────┐
-                    ▼             ▼
-                bypass.exe     open.ps1
-                    │             │
-                    │             ├── persistence.exe
-                    │             └── hidden.vbs
-                    │
-                    ▼
-                 stager.exe
-                    │
-                    ▼
-               Sliver C2
+```text
+                 Physical Access
+                       │
+                       ▼
+                Raspberry Pi Pico
+                       │
+                       ▼
+                  payload.dd
+                       │
+                       ▼
+                  launcher.vbs
+              ┌────────┼────────┐
+              │        │        │
+              ▼        ▼        ▼
+         bypass.exe  open.ps1  stager.exe
+                         │          │
+                         ├──► persistence.exe
+                         │          │
+                         └──► hidden.vbs
+                                    │
+                                    ▼
+                              Sliver C2 Session
+```
 
 ## ⚖️ Disclaimer
 
