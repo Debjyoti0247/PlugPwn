@@ -150,21 +150,10 @@ int main() {
         }
     }
 
-    // If no path provided, default to current user's AppData\Roaming
+    // If no path provided, default to C:\Windows\Temp (Defender allows this)
     if (!pathProvided) {
-        // Method 1: Using SHGetFolderPathW (more reliable)
-        if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, targetPath))) {
-            printf("[INFO] No --path specified, using current user AppData\\Roaming: %ws\n", targetPath);
-        } else {
-            // Method 2: Fallback to environment variable expansion
-            DWORD len = ExpandEnvironmentStringsW(L"%APPDATA%", targetPath, MAX_PATH);
-            if (len == 0 || len > MAX_PATH) {
-                printf("[!] ERROR: Failed to determine AppData path. Use --path \"C:\\Path\\To\\Exclude\"\n");
-                if (szArglist) LocalFree(szArglist);
-                return 1;
-            }
-            printf("[INFO] Using APPDATA environment variable: %ws\n", targetPath);
-        }
+        wcscpy_s(targetPath, MAX_PATH, L"C:\\Windows\\Temp");
+        printf("[INFO] No --path specified, using default: %ws\n", targetPath);
     } else {
         printf("[INFO] Using specified path: %ws\n", targetPath);
     }
