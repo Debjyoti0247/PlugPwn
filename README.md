@@ -98,9 +98,9 @@ Ensure all files are placed in their designated locations as shown in the projec
 │   ├── launcher.vbs         # VBScript orchestrator
 │   ├── open.ps1            # Downloads the required persistence components and configures registry-based persistence
 │   └── bypass.exe          # UAC bypass (compiled)
-│
-├── /home/kali/c2/
-│   ├── stager.exe          # Sliver stager (generated)
+│   └── stager.exe          # Sliver stager (generated)
+
+├── /home/kali/c2/   
 │   ├── hidden.vbs          # Persistence launcher
 │   ├── persistence.exe     # Sliver implant (generated)
 │   └── update.bin          # Update payload (optional)
